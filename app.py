@@ -109,7 +109,7 @@ def create_app(test_config=None):
 
     @app.get("/")
     def index():
-        return send_from_directory(app.static_folder, "index.html")
+        return send_from_directory(ROOT / "frontend", "index.html")
 
     @app.get("/data/README.md")
     def dataset_documentation():
