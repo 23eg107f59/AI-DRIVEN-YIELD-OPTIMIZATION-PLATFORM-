@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123a2d">
+  <meta name="description" content="An experimental oilseed crop yield optimization and analytics platform.">
+  <title>Oilseed AI | Smarter Farming. Better Yields.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/field-visuals.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script type="module" src="/js/app.js"></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-crop" viewBox="0 0 24 24"><path d="M12 21V9m0 6c-5 0-8-3-8-8 5 0 8 3 8 8Zm0-4c0-5 3-8 8-8 0 5-3 8-8 8Zm-5 9h10"/></symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+    <symbol id="icon-ruler" viewBox="0 0 24 24"><path d="m3 17 14-14 4 4L7 21H3v-4Z"/><path d="m14 6 4 4m-7-1 2 2m-5 1 2 2"/></symbol>
+    <symbol id="icon-rain" viewBox="0 0 24 24"><path d="M20 15.5a4.5 4.5 0 0 0-.8-8.9A7 7 0 0 0 5.5 8a4 4 0 0 0 .5 8h14Z"/><path d="m8 19-1 2m6-2-1 2m6-2-1 2"/></symbol>
+    <symbol id="icon-temperature" viewBox="0 0 24 24"><path d="M14 14.8V5a3 3 0 0 0-6 0v9.8a5 5 0 1 0 6 0Z"/><path d="M11 11v6"/></symbol>
+    <symbol id="icon-soil" viewBox="0 0 24 24"><path d="M3 11h18M5 11v7m7-7v7m7-7v7M3 18h18M7 6c2-3 8-3 10 0-2 3-8 3-10 0Z"/></symbol>
+    <symbol id="icon-ph" viewBox="0 0 24 24"><path d="M9 3H5l5 8v8a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-8l5-8h-4"/><path d="M9 15h6M7 3h10"/></symbol>
+    <symbol id="icon-nutrient" viewBox="0 0 24 24"><path d="M12 3v18M5 7l14 10M19 7 5 17"/><circle cx="12" cy="12" r="9"/></symbol>
+    <symbol id="icon-water" viewBox="0 0 24 24"><path d="M12 22a8 8 0 0 0 8-8c0-4-8-12-8-12S4 10 4 14a8 8 0 0 0 8 8Z"/><path d="M9 15a3 3 0 0 0 3 3"/></symbol>
+    <symbol id="icon-seed" viewBox="0 0 24 24"><path d="M20 4c-8 0-14 3-14 10a6 6 0 0 0 6 6c7 0 10-7 8-16Z"/><path d="M4 21c2-5 6-9 12-12"/></symbol>
+    <symbol id="icon-fertilizer" viewBox="0 0 24 24"><path d="M8 3h8v4l2 2v12H6V9l2-2V3Z"/><path d="M8 7h8m-4 5v6m-3-3h6"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 6-7"/></symbol>
+    <symbol id="icon-harvest" viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6"/><path d="M8 9h.01M12 9h.01M16 9h.01"/></symbol>
+    <symbol id="icon-drop" viewBox="0 0 24 24"><path d="M12 22a8 8 0 0 0 8-8c0-4-8-12-8-12S4 10 4 14a8 8 0 0 0 8 8Z"/></symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+  </svg>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#home" data-page="home" aria-label="Oilseed AI home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 34V16m0 9c-8 0-12-5-12-12 8 0 12 4 12 12Zm0-6c0-8 4-12 12-12 0 8-4 12-12 12Z"/><path d="M14 34h12"/></svg></span>
+        <span class="brand-name">oilseed<span>ai</span><small>FIELD INTELLIGENCE</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-page="home"><span class="nav-icon">⌂</span>Overview</button>
+        <button class="nav-link" data-page="dashboard"><span class="nav-icon">▦</span>Dashboard</button>
+        <button class="nav-link" data-page="predict"><span class="nav-icon">✳</span>Yield prediction</button>
+        <button class="nav-link" data-page="recommendations"><span class="nav-icon">✦</span>Recommendations</button>
+        <button class="nav-link" data-page="history"><span class="nav-icon">◷</span>Prediction history</button>
+      </nav>
+      <div class="nav-label learn-label">LEARN</div>
+      <nav class="side-nav" aria-label="Information">
+        <button class="nav-link" data-page="about"><span class="nav-icon">ⓘ</span>About the model</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-note"><span class="note-spark">✳</span><strong>Experimental model</strong><p>Demo data only. Explore the workflow, not a farm forecast.</p><button data-page="about">Learn about limitations <span>→</span></button></div>
+        <div class="sidebar-foot"><span class="live-dot"></span> Local workspace <span class="version">v1.0</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="menu-toggle" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb"><span>Oilseed AI</span><b>/</b><strong id="page-crumb">Overview</strong></div>
+        <div class="top-actions"><span class="demo-pill"><i></i> DEMO ENVIRONMENT</span><div class="avatar">OA</div></div>
+      </header>
+      <div id="global-message" class="global-message" role="status" aria-live="polite"></div>
+
+      <section class="page-section active" id="page-home">
+        <div class="hero-panel">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> INTELLIGENCE FOR EVERY FIELD</div>
+            <h1>Smarter farming.<br><em>Better yields.</em></h1>
+            <p>Explore how climate, soil and crop data can inform oilseed planning. An experimental AI workflow built for curious growers and tomorrow's agronomists.</p>
+            <div class="hero-actions"><button class="button button-light" data-page="predict">Explore a prediction <span>↗</span></button><button class="button button-ghost" data-page="dashboard">View dashboard <span>→</span></button></div>
+            <div class="hero-proof"><span class="proof-avatars"><i>G</i><i>M</i><i>S</i></span><span>6 oilseed crops in one workspace</span></div>
+          </div>
+          <figure class="hero-art image-frame">
+            <img src="/assets/images/soybean_harvest_india.jpg" alt="Farmer harvesting soybean in rural Maharashtra, India" fetchpriority="high" data-fallback="Indian oilseed farmer at harvest">
+            <figcaption class="art-label"><span>FIELD NOTE · MAHARASHTRA</span><strong>Indian farmers,<br>growing a better future.</strong><b>→</b></figcaption>
+            <span class="art-coordinates">SOYBEAN HARVEST · INDIA</span>
+          </figure>
+          <div class="hero-grain"></div>
+        </div>
+        <div class="section-heading home-heading"><div><span class="eyebrow">YOUR FIELD WORKSPACE</span><h2>A clearer view of every decision.</h2></div><p>Use the tools below to explore a transparent, locally run yield workflow.</p></div>
+        <div class="feature-grid">
+          <button class="feature-card" data-page="predict"><span class="feature-icon leaf-icon">↗</span><span class="feature-kicker">01 · MODEL</span><strong>Estimate yield</strong><p>Test a crop scenario against an experimental Random Forest pipeline.</p><span class="card-arrow">Explore prediction →</span></button>
+          <button class="feature-card" data-page="dashboard"><span class="feature-icon chart-icon">▥</span><span class="feature-kicker">02 · ANALYTICS</span><strong>See the whole picture</strong><p>Track your saved scenarios with live charts and useful summaries.</p><span class="card-arrow">Open dashboard →</span></button>
+          <button class="feature-card" data-page="recommendations"><span class="feature-icon spark-icon">✳</span><span class="feature-kicker">03 · GUIDANCE</span><strong>Explore conditions</strong><p>Review transparent, rule-based prompts for soil, nutrients and water.</p><span class="card-arrow">View recommendations →</span></button>
+        </div>
+        <div class="crop-gallery-heading"><span class="eyebrow">SUPPORTED OILSEEDS</span><h2>Rooted in India's fields.</h2><p>Field photographs are identified by the locations documented by their creators. They illustrate agriculture; they are not model training data.</p></div>
+        <div class="crop-gallery">
+          <article class="crop-photo-card"><img src="/assets/images/mustard_india.jpg" alt="Mustard field in Rajasthan with a farmer among the flowering crop" loading="lazy" data-fallback="Mustard fields in Rajasthan"><div><span>RAJASTHAN</span><h3>Mustard</h3></div></article>
+          <article class="crop-photo-card crop-photo-pair"><div class="paired-photos"><img src="/assets/images/groundnut_farming.jpg" alt="Groundnut crop field in Andhra Pradesh" loading="lazy" data-fallback="Groundnut field in Andhra Pradesh"><img src="/assets/images/groundnut_gujarat.jpg" alt="Groundnut farm landscape in Jamnagar, Gujarat" loading="lazy" data-fallback="Groundnut farm in Gujarat"></div><div><span>ANDHRA PRADESH · GUJARAT</span><h3>Groundnut</h3></div></article>
+          <article class="crop-photo-card"><img src="/assets/images/soybean_field.jpg" alt="Soybean field in Maharashtra on the Deccan Plateau" loading="lazy" data-fallback="Soybean fields in Maharashtra"><div><span>MAHARASHTRA</span><h3>Soybean</h3></div></article>
+          <article class="crop-photo-card"><img src="/assets/images/sunflower_farm.jpg" alt="Sunflower fields near Ranebennur, Karnataka, India" loading="lazy" data-fallback="Sunflower fields in Karnataka"><div><span>KARNATAKA</span><h3>Sunflower</h3></div></article>
+          <article class="crop-photo-card"><img src="/assets/images/sesame_field_india.jpg" alt="Sesame field in Dhulagarh, Howrah, India" loading="lazy" data-fallback="Sesame field in India"><div><span>WEST BENGAL</span><h3>Sesame</h3></div></article>
+          <article class="crop-photo-card"><img src="/assets/images/mustard_india.jpg" alt="Mustard field shown as a related brassica oilseed visual; not a rapeseed photograph" loading="lazy" data-fallback="Related mustard-family oilseed field"><div><span>RELATED BRASSICA VISUAL</span><h3>Rapeseed</h3></div></article>
+        </div>
+        <div class="home-stats"><div><span>YOUR PREDICTIONS</span><strong id="home-total">—</strong><small>Saved in this workspace</small></div><div><span>AVERAGE ESTIMATE</span><strong id="home-average">—</strong><small>kg/ha · your saved scenarios</small></div><div><span>MODEL STATUS</span><strong class="status-experimental">Experimental</strong><small>Synthetic development dataset</small></div><button data-page="history">Browse your history <span>→</span></button></div>
+      </section>
+
+      <section class="page-section" id="page-dashboard">
+        <div class="page-title-row"><div><span class="eyebrow">YOUR WORKSPACE</span><h1>Dashboard</h1><p>A live summary of the prediction scenarios saved on this device.</p></div><button class="button button-primary" data-page="predict">＋ New prediction</button></div>
+        <div class="filter-bar dashboard-filters"><label>Crop<select id="dash-crop-filter"><option value="">All crops</option></select></label><label>From<input id="dash-from" type="date"></label><label>To<input id="dash-to" type="date"></label><button class="button button-soft" id="dash-apply">Apply filters</button><button class="text-button" id="dash-reset">Reset</button></div>
+        <div class="dashboard-photo-banner"><img src="/assets/images/sunflower_farm.jpg" alt="Sunflower crop in Ranebennur, Karnataka" loading="lazy" data-fallback="Sunflower field in Karnataka"><div><span class="eyebrow">FIELD NOTES · KARNATAKA</span><strong>Every field has a story.</strong><p>Use local observations and verified datasets to make model results meaningful.</p></div><span class="photo-credit-link">Sunflower fields · Ranebennur</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon green"><svg aria-hidden="true"><use href="#icon-chart"></use></svg></div><span>TOTAL PREDICTIONS</span><strong id="dash-total">—</strong><small>In the selected period</small></article>
+          <article class="stat-card"><div class="stat-icon lime"><svg aria-hidden="true"><use href="#icon-crop"></use></svg></div><span>AVERAGE ESTIMATED YIELD</span><strong id="dash-average">—</strong><small>kg per hectare</small></article>
+          <article class="stat-card"><div class="stat-icon gold"><svg aria-hidden="true"><use href="#icon-seed"></use></svg></div><span>MOST SELECTED CROP</span><strong id="dash-crop">—</strong><small id="dash-crop-sub">Based on your records</small></article>
+        </div>
+        <div class="chart-grid"><article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow"><svg class="heading-icon" aria-hidden="true"><use href="#icon-chart"></use></svg>CROP COMPARISON</span><h3>Average predicted yield</h3></div><span class="unit-tag">kg/ha</span></div><div class="chart-wrap"><canvas id="crop-chart" aria-label="Average predicted yield by crop"></canvas><div class="chart-empty" id="crop-empty">Your crop comparison will appear after your first prediction.</div></div></article>
+          <article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow"><svg class="heading-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>YOUR ACTIVITY</span><h3>Prediction timeline</h3></div><span class="unit-tag">kg/ha</span></div><div class="chart-wrap"><canvas id="timeline-chart" aria-label="Prediction yield history"></canvas><div class="chart-empty" id="timeline-empty">No saved predictions yet. Your timeline starts with your first scenario.</div></div></article></div>
+        <div class="lower-grid"><article class="panel chart-panel distribution-panel"><div class="panel-head"><div><span class="eyebrow"><svg class="heading-icon" aria-hidden="true"><use href="#icon-crop"></use></svg>CROP MIX</span><h3>Scenario distribution</h3></div></div><div class="distribution-wrap"><canvas id="distribution-chart" aria-label="Distribution of predictions by crop"></canvas><div class="chart-empty" id="distribution-empty">Crop distribution will appear here.</div></div></article><article class="panel recent-panel"><div class="panel-head"><div><span class="eyebrow"><svg class="heading-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>LATEST ACTIVITY</span><h3>Recent predictions</h3></div><button class="text-button" data-page="history">View all →</button></div><div id="dash-recent" class="recent-list"></div></article></div>
+        <section class="model-performance" aria-labelledby="dashboard-performance-title"><div class="performance-heading"><div><span class="eyebrow">HELD-OUT EVALUATION</span><h2 id="dashboard-performance-title"><svg class="section-title-icon" aria-hidden="true"><use href="#icon-chart"></use></svg>Machine Learning Model Performance</h2><p id="dashboard-model-description">Evaluation metrics are loaded from the saved training report.</p></div><button class="text-button" data-page="about">Read the model report →</button></div><div class="performance-cards"><article><span><svg class="heading-icon" aria-hidden="true"><use href="#icon-chart"></use></svg>R² REGRESSION SCORE</span><strong id="dash-metric-r2">—</strong><small>Not a percentage of accuracy</small></article><article><span><svg class="heading-icon" aria-hidden="true"><use href="#icon-ruler"></use></svg>MEAN ABSOLUTE ERROR</span><strong id="dash-metric-mae">—</strong><small>kg/ha · held-out test set</small></article><article><span><svg class="heading-icon" aria-hidden="true"><use href="#icon-ruler"></use></svg>ROOT MEAN SQUARED ERROR</span><strong id="dash-metric-rmse">—</strong><small>kg/ha · held-out test set</small></article><article><span><svg class="heading-icon" aria-hidden="true"><use href="#icon-chart"></use></svg>MEAN ABSOLUTE PERCENTAGE ERROR</span><strong id="dash-metric-mape">—</strong><small>Non-zero actual yields only</small></article></div><div id="dashboard-model-status" class="evaluation-notice" role="status">Model evaluation unavailable until a valid report has been trained.</div><div class="evaluation-chart-grid"><article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">HELD-OUT TEST ROWS</span><h3>Actual vs. predicted yield</h3></div><span class="unit-tag">kg/ha</span></div><div class="eval-chart-wrap"><canvas id="actual-predicted-chart" aria-label="Scatter plot of actual versus predicted held-out crop yield"></canvas><div class="chart-empty" id="actual-predicted-empty">Model evaluation unavailable.</div></div></article><article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">ERROR MAGNITUDE</span><h3>MAE and RMSE</h3></div><span class="unit-tag">kg/ha</span></div><div class="eval-chart-wrap"><canvas id="metric-chart" aria-label="Bar chart of mean absolute error and root mean squared error"></canvas><div class="chart-empty" id="metric-chart-empty">Model evaluation unavailable.</div></div></article><article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">TEST RESIDUALS</span><h3>Residual error distribution</h3></div><span class="unit-tag">kg/ha</span></div><div class="eval-chart-wrap"><canvas id="residual-chart" aria-label="Distribution of held-out test residual errors"></canvas><div class="chart-empty" id="residual-chart-empty">Model evaluation unavailable.</div></div></article><article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">MINIMUM 2 TEST ROWS PER CROP</span><h3>Crop-wise mean absolute error</h3></div><span class="unit-tag">kg/ha</span></div><div class="eval-chart-wrap"><canvas id="crop-performance-chart" aria-label="Mean absolute error by crop on held-out test rows"></canvas><div class="chart-empty" id="crop-performance-empty">Not enough held-out test rows for a crop-wise comparison.</div></div></article></div><p class="subtle-notice">R² is a regression score, not a prediction-accuracy percentage. All evaluation charts use only the held-out test records.</p></section>
+        <section class="historical-agriculture" aria-labelledby="historical-agriculture-title">
+          <div class="performance-heading">
+            <div><span class="eyebrow">OFFICIAL REGIONAL STATISTICS</span><h2 id="historical-agriculture-title">Historical Agricultural Data</h2><p>Source-attributed crop area, production, and yield records. These are regional statistics, not individual farmer histories.</p></div>
+            <button class="button button-primary" id="agriculture-sync-button">Sync Historical Data</button>
+          </div>
+          <div class="filter-bar agriculture-filters">
+            <label>Crop<select id="agriculture-crop-filter"><option value="">All crops</option></select></label>
+            <label>State / region<select id="agriculture-state-filter"><option value="">All regions</option></select></label>
+            <label>District<input id="agriculture-district-filter" type="text" maxlength="100" placeholder="All districts"></label>
+            <label>Season<select id="agriculture-season-filter"><option value="">All seasons</option></select></label>
+            <label>Crop year<select id="agriculture-year-filter"><option value="">All years</option></select></label>
+            <button class="button button-soft" id="agriculture-apply-filters">Apply filters</button>
+            <button class="text-button" id="agriculture-reset-filters">Reset</button>
+          </div>
+          <div class="historical-stat-grid">
+            <article class="stat-card"><span>IMPORTED REGIONAL RECORDS</span><strong id="agriculture-record-count">—</strong><small>Officially sourced records</small></article>
+            <article class="stat-card"><span>SUPPORTED CROPS</span><strong id="agriculture-crop-count">—</strong><small>Present in the imported data</small></article>
+            <article class="stat-card"><span>STATES / REGIONS</span><strong id="agriculture-state-count">—</strong><small>India-level aggregates are included</small></article>
+            <article class="stat-card"><span>HISTORICAL COVERAGE</span><strong id="agriculture-year-coverage">—</strong><small>Years present after filtering</small></article>
+          </div>
+          <div class="agriculture-sync-status" id="agriculture-sync-status" role="status">Checking source synchronization status…</div>
+          <div class="agriculture-source-list" id="agriculture-source-list"></div>
+          <div class="agriculture-sync-errors" id="agriculture-sync-errors" role="status"></div>
+          <div class="chart-grid agriculture-chart-grid">
+            <article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">SOURCE-ATTRIBUTED HISTORY</span><h3>Historical oilseed yield trends</h3></div><span class="unit-tag">kg/ha</span></div><div class="chart-wrap"><canvas id="agriculture-trend-chart" aria-label="Historical oilseed crop yield trends from official regional statistics"></canvas><div class="chart-empty" id="agriculture-trend-empty">No historical records match these filters.</div></div><p class="chart-source-label" id="agriculture-trend-source">Source and reporting period appear with available data.</p></article>
+            <article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">LATEST AVAILABLE CROP YEAR</span><h3>Crop-wise yield comparison</h3></div><span class="unit-tag">kg/ha</span></div><div class="chart-wrap"><canvas id="agriculture-crop-chart" aria-label="Latest available crop-wise agricultural yields"></canvas><div class="chart-empty" id="agriculture-crop-empty">No crop yield data is available.</div></div><p class="chart-source-label" id="agriculture-crop-source">Only reported official values are shown.</p></article>
+            <article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">STATE-LEVEL SERIES</span><h3>State-wise yield comparison</h3></div><span class="unit-tag">kg/ha</span></div><div class="chart-wrap"><canvas id="agriculture-state-chart" aria-label="State-wise official crop yields"></canvas><div class="chart-empty" id="agriculture-state-empty">Select a crop to compare regions.</div></div><p class="chart-source-label" id="agriculture-state-source">Regional records remain separate by source.</p></article>
+            <article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">REPORTED AREA &amp; PRODUCTION</span><h3>Production and cultivated area</h3></div></div><div class="chart-wrap"><canvas id="agriculture-production-chart" aria-label="Reported production and cultivated area trends"></canvas><div class="chart-empty" id="agriculture-production-empty">Area and production are not available for these filters.</div></div><p class="chart-source-label" id="agriculture-production-source">Original source units are converted to hectares and tonnes.</p></article>
+          </div>
+        </section>
+        <p class="subtle-notice">All values shown are experimental model estimates based on the available dataset and are not validated agricultural forecasts.</p>
+      </section>
+
+      <section class="page-section" id="page-predict">
+        <div class="page-title-row"><div><span class="eyebrow">SCENARIO LAB</span><h1>Yield prediction</h1><p>Describe a growing scenario to explore the experimental model workflow.</p></div><div class="experimental-badge"><span>✳</span> Experimental estimate</div></div>
+        <div class="notice-banner"><span>ⓘ</span><p><strong>Development model:</strong> The current model uses synthetic demonstration data, not observed farm records. Treat predictions as illustrative only.</p><button data-page="about" aria-label="Learn about this model">Learn more →</button></div>
+        <div class="prediction-layout"><form id="prediction-form" class="panel prediction-form" novalidate>
+          <div class="form-section"><div class="form-section-title"><span>01</span><div><h3>Crop & location</h3><p>Set the crop and growing context.</p></div></div>
+            <div class="crop-choice-grid" role="group" aria-label="Choose an oilseed crop">
+              <button type="button" class="crop-choice" data-crop-choice="Sunflower" aria-pressed="false"><img src="/assets/images/sunflower_farm.jpg" alt="" loading="lazy"><span><strong>Sunflower</strong><small>Sunflower oilseed</small></span></button>
+              <button type="button" class="crop-choice" data-crop-choice="Soybean" aria-pressed="false"><img src="/assets/images/soybean_field.jpg" alt="" loading="lazy"><span><strong>Soybean</strong><small>Oilseed legume</small></span></button>
+              <button type="button" class="crop-choice" data-crop-choice="Groundnut" aria-pressed="false"><img src="/assets/images/groundnut_farming.jpg" alt="" loading="lazy"><span><strong>Groundnut</strong><small>Pod-forming oilseed</small></span></button>
+              <button type="button" class="crop-choice" data-crop-choice="Mustard" aria-pressed="false"><img src="/assets/images/mustard_india.jpg" alt="" loading="lazy"><span><strong>Mustard</strong><small>Brassica oilseed</small></span></button>
+              <button type="button" class="crop-choice" data-crop-choice="Sesame" aria-pressed="false"><img src="/assets/images/sesame_field_india.jpg" alt="" loading="lazy"><span><strong>Sesame</strong><small>Sesame oilseed</small></span></button>
+              <button type="button" class="crop-choice" data-crop-choice="Rapeseed" aria-pressed="false"><img src="/assets/images/mustard_india.jpg" alt="" loading="lazy"><span><strong>Rapeseed</strong><small>Related brassica oilseed</small></span></button>
+            </div>
+            <div class="form-grid">
+            <label>Crop type<select name="crop" required><option value="">Choose a crop</option></select></label>
+            <label>State or region<input name="region" required maxlength="100" placeholder="e.g. Madhya Pradesh"></label>
+            <label>Season<select name="season" required><option value="">Choose season</option><option>Kharif</option><option>Rabi</option><option>Summer</option></select></label>
+            <label>Cultivated area <span class="input-unit">ha</span><input name="area_ha" type="number" min="0.01" max="100000" step="any" required placeholder="e.g. 2.5"></label>
+          </div></div>
+          <div class="form-section"><div class="form-section-title"><span>02</span><div><h3>Weather & soil</h3><p>Use representative seasonal or field measurements.</p></div></div><div class="form-grid">
+            <label>Average rainfall <span class="input-unit">mm</span><input name="rainfall_mm" type="number" min="0" max="5000" step="any" required placeholder="Enter rainfall in mm (e.g., 700)"></label>
+            <label>Average temperature <span class="input-unit">°C</span><input name="temperature_c" type="number" min="-10" max="60" step="any" required placeholder="Enter temperature in °C (e.g., 26)"></label>
+            <label>Soil type<select name="soil_type" required><option value="">Choose soil type</option><option>Alluvial</option><option>Black</option><option>Clay</option><option>Clay loam</option><option>Loamy</option><option>Red</option><option>Sandy</option><option>Sandy loam</option></select></label>
+            <label>Soil pH<input name="soil_ph" type="number" min="0" max="14" step="any" required placeholder="Enter soil pH (e.g., 6.5)"></label>
+          </div><div class="environment-summary" id="environment-summary" aria-live="polite"></div></div>
+          <div class="form-section"><div class="form-section-title"><span>03</span><div><h3>Nutrients & management</h3><p>Enter approximate per-hectare values.</p></div></div><div class="form-grid">
+            <label>Nitrogen <span class="input-unit">kg/ha</span><input name="nitrogen_kg_ha" type="number" min="0" max="1000" step="any" required placeholder="Enter nitrogen rate (kg/ha)"></label>
+            <label>Phosphorus <span class="input-unit">kg/ha</span><input name="phosphorus_kg_ha" type="number" min="0" max="1000" step="any" required placeholder="Enter phosphorus rate (kg/ha)"></label>
+            <label>Potassium <span class="input-unit">kg/ha</span><input name="potassium_kg_ha" type="number" min="0" max="1000" step="any" required placeholder="Enter potassium rate (kg/ha)"></label>
+            <label>Irrigation method<select name="irrigation" required><option value="">Choose method</option><option>Canal</option><option>Drip</option><option>Flood irrigation</option><option>Rainfed</option><option>Sprinkler</option><option>Tube well</option><option>None</option></select></label>
+            <label>Seed variety or category<input name="seed_variety" maxlength="100" required placeholder="e.g. Local variety"></label>
+            <label>Fertilizer usage <span class="input-unit">kg/ha</span><input name="fertilizer_kg_ha" type="number" min="0" max="5000" step="any" required placeholder="Enter fertilizer applied (kg/ha)"></label>
+            <label class="span-two">Previous yield <span class="input-unit">kg/ha · optional</span><input name="previous_yield_kg_ha" type="number" min="0" max="30000" step="any" placeholder="Leave blank if unknown"></label>
+          </div><div class="nutrient-summary" id="nutrient-summary" aria-live="polite"></div></div>
+          <div class="form-error" id="predict-error" role="alert"></div>
+          <div class="form-actions"><span>Fields marked with values are checked before submission.</span><button class="button button-primary" type="submit" id="predict-submit">Generate estimate <span>↗</span></button></div>
+        </form>
+        <aside class="prediction-aside"><div class="panel result-card" id="prediction-result"><div class="result-placeholder"><span class="result-orbit">✳</span><span class="eyebrow">YOUR ESTIMATE</span><h3>Your scenario,<br>made measurable.</h3><p>Complete the form to see estimated yield and total production.</p><div class="placeholder-line"></div><div class="placeholder-line short"></div></div></div><div class="mini-trust"><span>ⓘ</span><p><strong>Estimates are not guarantees.</strong><br>Actual outcomes depend on local weather, soil, management and many other factors.</p></div></aside></div>
+      </section>
+
+      <section class="page-section" id="page-recommendations">
+        <div class="page-title-row"><div><span class="eyebrow">CONDITION CHECK</span><h1>Crop recommendations</h1><p>Explore explicit, transparent rules for common crop conditions.</p></div></div>
+        <div class="notice-banner muted-banner"><span>✳</span><p><strong>General screening only.</strong> These rule-based prompts are not scientifically validated personalized advice and cannot guarantee yield improvement.</p></div>
+        <div class="recommendation-layout"><form class="panel recommendation-form" id="recommendation-form"><div class="panel-head"><div><span class="eyebrow">YOUR CONDITIONS</span><h3>What are you working with?</h3></div><span class="step-count">7 inputs</span></div><p class="form-intro">Enter field conditions to see which transparent rules apply.</p><div class="form-grid">
+          <label>Crop<select name="crop" required><option value="">Choose a crop</option></select></label>
+          <label>Season<select name="season" required><option value="">Choose season</option><option>Kharif</option><option>Rabi</option><option>Summer</option></select></label>
+          <label>Rainfall <span class="input-unit">mm</span><input name="rainfall_mm" type="number" min="0" max="5000" required></label>
+          <label>Temperature <span class="input-unit">°C</span><input name="temperature_c" type="number" min="-10" max="60" required></label>
+          <label>Soil pH<input name="soil_ph" type="number" min="0" max="14" step="any" required></label>
+          <label>Irrigation<select name="irrigation" required><option value="">Choose method</option><option>Canal</option><option>Drip</option><option>Flood irrigation</option><option>Rainfed</option><option>Sprinkler</option><option>Tube well</option><option>None</option></select></label>
+          <label>Nitrogen <span class="input-unit">kg/ha</span><input name="nitrogen_kg_ha" type="number" min="0" max="1000" required></label>
+          <label>Phosphorus <span class="input-unit">kg/ha</span><input name="phosphorus_kg_ha" type="number" min="0" max="1000" required></label>
+          <label>Potassium <span class="input-unit">kg/ha</span><input name="potassium_kg_ha" type="number" min="0" max="1000" required></label>
+        </div><div class="form-error" id="recommendation-error" role="alert"></div><button type="submit" class="button button-primary full-button" id="recommend-submit">Review conditions <span>→</span></button></form>
+        <div class="panel recommendation-results"><div class="panel-head"><div><span class="eyebrow">RULE-BASED REVIEW</span><h3>Condition insights</h3></div></div><div id="recommendation-list" class="recommendation-list"><div class="empty-state small-empty"><span>✳</span><h3>Start with your conditions</h3><p>Relevant screening notes will appear here.</p></div></div><p class="recommendation-notice" id="recommendation-notice"></p></div></div>
+        <div class="care-gallery"><article class="care-photo image-frame"><img src="/assets/images/drip_irrigation_india.jpg" alt="Drip irrigation tubing prepared across a ploughed field in Chinawal, India" loading="lazy" data-fallback="Irrigation and prepared field"><div><span>WATER MANAGEMENT · CHINAWAL</span><strong>Plan irrigation around local water and crop needs.</strong></div></article><article class="care-photo image-frame"><img src="/assets/images/groundnut_farming.jpg" alt="Groundnut plants growing in a field in Andhra Pradesh" loading="lazy" data-fallback="Groundnut crop and soil"><div><span>FIELD CARE · ANDHRA PRADESH</span><strong>Use soil tests and local expertise to guide field care.</strong></div></article></div>
+      </section>
+
+      <section class="page-section" id="page-history">
+        <div class="page-title-row"><div><span class="eyebrow">SAVED SCENARIOS</span><h1>Prediction history</h1><p>Search, review or remove scenarios stored in your local SQLite database.</p></div><button class="button button-primary" data-page="predict">＋ New prediction</button></div>
+        <div class="panel history-panel"><div class="history-toolbar"><div class="search-box"><span>⌕</span><input id="history-search" type="search" placeholder="Search crop or region…" aria-label="Search crop or region"></div><label class="compact-filter"><span>Crop</span><select id="history-crop"><option value="">All crops</option></select></label><label class="compact-filter date-filter"><span>From</span><input id="history-from" type="date"></label><label class="compact-filter date-filter"><span>To</span><input id="history-to" type="date"></label><label class="compact-filter"><span>Sort</span><select id="history-sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="yield_desc">Highest yield</option><option value="yield_asc">Lowest yield</option></select></label><button class="button button-soft" id="history-apply">Filter</button></div>
+          <div class="table-scroll"><table><thead><tr><th>CROP / REGION</th><th>PREDICTED YIELD</th><th>AREA</th><th>EST. PRODUCTION</th><th>DATE</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="history-body"></tbody></table><div class="history-loading" id="history-loading" role="status" aria-live="polite">Loading saved predictions…</div><div class="empty-state table-empty" id="history-empty"><span>◷</span><h3>No predictions yet</h3><p>Your submitted scenarios will be saved here for later review.</p><button class="button button-primary" data-page="predict">Create first prediction</button></div></div>
+          <div class="table-footer"><span id="history-count">0 scenarios</span><span>Stored locally on this device</span></div>
+        </div>
+      </section>
+
+      <section class="page-section" id="page-about">
+        <div class="page-title-row"><div><span class="eyebrow">TRANSPARENT BY DESIGN</span><h1>About the model</h1><p>Understand what powers this project—and where its limits are.</p></div></div>
+        <div class="about-hero"><div><span class="eyebrow">PROJECT OBJECTIVE</span><h2>Make the path from field inputs to model output visible.</h2><p>Oilseed AI is a local demonstration of a complete machine-learning application: validate a scenario, transform the same features used in training, estimate yield, and keep a useful history.</p></div><figure class="about-photo image-frame"><img src="/assets/images/soybean_field.jpg" alt="Soybean field in Maharashtra illustrating the project's agricultural context" loading="lazy" data-fallback="Oilseed farming in Maharashtra"><figcaption>SOYBEAN FIELD · MAHARASHTRA</figcaption></figure></div>
+        <div class="pipeline-panel panel"><div class="panel-head"><div><span class="eyebrow">THE DATA JOURNEY</span><h3>From scenario to estimate</h3></div></div><div class="pipeline"><div><span>01</span><b>Field inputs</b><small>Crop, climate,<br>soil & management</small></div><i>→</i><div><span>02</span><b>Validation</b><small>Ranges, categories<br>& missing values</small></div><i>→</i><div><span>03</span><b>Preprocessing</b><small>Imputation +<br>category encoding</small></div><i>→</i><div><span>04</span><b>Random Forest</b><small>Held-out evaluation<br>& fitted pipeline</small></div><i>→</i><div><span>05</span><b>Saved estimate</b><small>Yield, production<br>& local history</small></div></div></div>
+        <section class="about-performance panel"><span class="eyebrow">MODEL REPORT</span><h2>Machine Learning Model Performance</h2><p id="metric-source" class="report-lead">Model evaluation unavailable until a valid training report exists.</p><div class="performance-cards about-metric-cards"><article><span>R² REGRESSION SCORE</span><strong id="metric-r2">—</strong><small>Not a percentage of accuracy</small></article><article><span>MEAN ABSOLUTE ERROR</span><strong id="metric-mae">—</strong><small>kg/ha</small></article><article><span>ROOT MEAN SQUARED ERROR</span><strong id="metric-rmse">—</strong><small>kg/ha</small></article><article><span>MEAN ABSOLUTE PERCENTAGE ERROR</span><strong id="metric-mape">—</strong><small>Non-zero yields only</small></article></div><div class="report-details"><div><span>ALGORITHM</span><strong id="metric-model-name">—</strong></div><div><span>TRAIN / TEST RECORDS</span><strong id="metric-record-count">—</strong></div><div><span>VALIDATION SPLIT</span><strong id="metric-split">—</strong></div><div><span>DATASET / SOURCE</span><strong id="metric-dataset">—</strong></div><div><span>CROPS REPRESENTED</span><strong id="metric-crops">—</strong></div><div><span>REGIONS REPRESENTED</span><strong id="metric-regions">—</strong></div><div><span>EVALUATED AT</span><strong id="metric-timestamp">—</strong></div></div><p id="metric-status" class="metric-status">Loading saved model evaluation…</p><p class="report-explanation">R² describes regression fit relative to a mean-target baseline; it is not classification accuracy or a percent of predictions that are correct. MAE and RMSE are measured in kg/ha. MAPE is calculated only over non-zero actual yields. Every metric and test plot comes from held-out records.</p></section>
+        <div class="about-grid"><article class="panel about-card"><span class="eyebrow">DATASET</span><h3>Development data, clearly labeled.</h3><p>The included CSV contains hypothetical scenarios generated for software development. It is not a real agricultural dataset. Results and metrics from it only demonstrate that the application pipeline works.</p><a href="/data/README.md" target="_blank" rel="noopener">Read dataset schema and source note ↗</a></article><article class="panel about-card"><span class="eyebrow">ALGORITHM</span><h3>Random Forest Regressor</h3><p>A scikit-learn pipeline imputes missing data, one-hot encodes categories and trains a Random Forest. A grouped split keeps regions (or farm IDs when provided) separate between train and test.</p><span class="tag">scikit-learn · joblib · GroupShuffleSplit</span></article><article class="panel about-card about-image-credit"><span class="eyebrow">PHOTO CREDITS</span><h3>Images of real Indian agricultural places</h3><p>Crop cards use local photographs with source links, creator credit and license information. Regional labels follow source metadata; unavailable state-specific imagery is not implied.</p><a href="/assets/images/IMAGE_CREDITS.md" target="_blank" rel="noopener">View image credits and licenses ↗</a></article><article class="panel about-card"><span class="eyebrow">LIMITATIONS</span><h3>Not a farm decision system.</h3><p>The small synthetic dataset cannot capture regional soils, cultivars, pests, seasonal variation or management quality. Metrics are a code-path check, not real-world validation. More regionally representative real data, external testing and agronomist review are essential.</p><span class="tag warning-tag">Experimental · not for agronomic decisions</span></article></div>
+      </section>
+      <footer class="main-footer"><span>Oilseed AI <b>·</b> Local, experimental project workspace</span><span>Built for transparent exploration <span>✳</span></span></footer>
+    </main>
+  </div>
+  <dialog id="detail-dialog" class="detail-dialog"><div class="dialog-head"><div><span class="eyebrow">SAVED SCENARIO</span><h2>Prediction details</h2></div><button class="icon-button" id="detail-close" aria-label="Close details">×</button></div><div id="detail-content"></div></dialog>
+</body>
+</html>

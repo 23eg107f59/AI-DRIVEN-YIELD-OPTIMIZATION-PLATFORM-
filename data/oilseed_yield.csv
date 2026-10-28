@@ -1,0 +1,37 @@
+crop,region,season,rainfall_mm,temperature_c,soil_type,soil_ph,nitrogen_kg_ha,phosphorus_kg_ha,potassium_kg_ha,irrigation,seed_variety,fertilizer_kg_ha,previous_yield_kg_ha,yield_kg_ha
+Groundnut,Maharashtra,Kharif,720,27,Loamy,6.4,28,45,35,Rainfed,Demo-A,90,1450,1520
+Groundnut,Gujarat,Kharif,650,29,Sandy loam,6.8,32,48,38,Drip,Demo-B,105,1580,1690
+Groundnut,Andhra Pradesh,Rabi,510,25,Red,6.2,35,50,42,Canal,Demo-A,120,1320,1490
+Groundnut,Tamil Nadu,Kharif,840,28,Red,6.5,30,44,36,Sprinkler,Demo-C,95,1510,1630
+Groundnut,Karnataka,Kharif,690,26,Clay loam,6.1,26,42,34,Rainfed,Demo-B,85,1380,1440
+Groundnut,Rajasthan,Kharif,430,31,Sandy,7.2,24,38,30,Drip,Demo-A,110,1160,1280
+Mustard,Rajasthan,Rabi,310,18,Loamy,7.1,50,35,25,Rainfed,Demo-A,110,1480,1620
+Mustard,Haryana,Rabi,390,16,Clay loam,7.3,55,38,28,Canal,Demo-B,130,1710,1850
+Mustard,Uttar Pradesh,Rabi,420,17,Alluvial,7.0,48,40,30,Tube well,Demo-C,120,1580,1760
+Mustard,Madhya Pradesh,Rabi,350,19,Black,6.8,45,36,29,Rainfed,Demo-A,100,1420,1530
+Mustard,Punjab,Rabi,460,15,Loamy,7.2,58,42,32,Canal,Demo-B,140,1800,1930
+Mustard,Gujarat,Rabi,280,20,Sandy loam,7.5,42,32,24,Drip,Demo-C,95,1330,1460
+Soybean,Madhya Pradesh,Kharif,780,25,Black,6.7,25,55,42,Rainfed,Demo-A,80,1750,1890
+Soybean,Maharashtra,Kharif,860,26,Clay loam,6.4,30,58,45,Drip,Demo-B,95,1880,2040
+Soybean,Rajasthan,Kharif,540,28,Loamy,7.0,28,48,38,Rainfed,Demo-C,85,1480,1570
+Soybean,Karnataka,Kharif,720,24,Red,6.2,24,52,40,Sprinkler,Demo-A,90,1620,1780
+Soybean,Telangana,Kharif,690,27,Red,6.5,32,54,43,Canal,Demo-B,100,1690,1820
+Soybean,Chhattisgarh,Kharif,1050,25,Alluvial,6.3,34,60,48,Rainfed,Demo-C,105,1940,2070
+Sunflower,Karnataka,Rabi,460,23,Red,6.3,45,42,48,Drip,Demo-A,125,1250,1390
+Sunflower,Andhra Pradesh,Rabi,520,24,Loamy,6.5,48,45,52,Canal,Demo-B,135,1380,1520
+Sunflower,Maharashtra,Kharif,680,26,Black,6.6,42,40,46,Rainfed,Demo-C,115,1310,1450
+Sunflower,Tamil Nadu,Rabi,390,25,Red,6.2,46,44,50,Sprinkler,Demo-A,130,1420,1570
+Sunflower,Telangana,Kharif,610,27,Clay loam,6.4,40,38,44,Drip,Demo-B,110,1200,1330
+Sunflower,Gujarat,Rabi,350,22,Sandy loam,7.0,38,36,42,Canal,Demo-C,105,1180,1290
+Sesame,Uttar Pradesh,Kharif,620,29,Loamy,6.8,22,35,28,Rainfed,Demo-A,70,680,760
+Sesame,West Bengal,Kharif,980,28,Alluvial,6.4,25,40,32,Rainfed,Demo-B,85,790,870
+Sesame,Rajasthan,Kharif,390,31,Sandy,7.4,20,30,24,Drip,Demo-C,65,560,630
+Sesame,Madhya Pradesh,Kharif,540,27,Black,6.7,24,38,30,Rainfed,Demo-A,75,710,800
+Sesame,Gujarat,Kharif,450,30,Sandy loam,7.1,21,32,26,Drip,Demo-B,70,620,690
+Sesame,Andhra Pradesh,Rabi,480,26,Red,6.3,26,42,34,Sprinkler,Demo-C,90,760,840
+Rapeseed,Haryana,Rabi,400,17,Loamy,7.2,52,38,30,Canal,Demo-A,125,1650,1780
+Rapeseed,Rajasthan,Rabi,290,19,Sandy loam,7.4,45,34,27,Rainfed,Demo-B,105,1420,1540
+Rapeseed,Uttar Pradesh,Rabi,440,16,Alluvial,7.0,55,42,32,Tube well,Demo-C,135,1740,1890
+Rapeseed,Punjab,Rabi,480,15,Clay loam,7.3,58,44,34,Canal,Demo-A,145,1810,1970
+Rapeseed,Madhya Pradesh,Rabi,360,18,Black,6.9,48,36,29,Rainfed,Demo-B,110,1510,1640
+Rapeseed,Gujarat,Rabi,320,20,Loamy,7.1,46,35,28,Drip,Demo-C,115,1470,1590

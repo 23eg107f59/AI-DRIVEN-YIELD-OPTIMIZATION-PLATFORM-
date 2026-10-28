@@ -1,0 +1,187 @@
+{
+  "model_name": "Random Forest Regressor",
+  "dataset_source": "Synthetic development dataset (project-generated; no external source)",
+  "data_source": "synthetic_demo",
+  "experimental": true,
+  "dataset": {
+    "input_rows": 36,
+    "usable_rows": 36,
+    "discarded_rows": 0,
+    "crop_types": [
+      "Groundnut",
+      "Mustard",
+      "Rapeseed",
+      "Sesame",
+      "Soybean",
+      "Sunflower"
+    ],
+    "regions": [
+      "Andhra Pradesh",
+      "Chhattisgarh",
+      "Gujarat",
+      "Haryana",
+      "Karnataka",
+      "Madhya Pradesh",
+      "Maharashtra",
+      "Punjab",
+      "Rajasthan",
+      "Tamil Nadu",
+      "Telangana",
+      "Uttar Pradesh",
+      "West Bengal"
+    ],
+    "training_rows": 23,
+    "test_rows": 13
+  },
+  "split": {
+    "method": "GroupShuffleSplit by region",
+    "test_size": 0.25,
+    "random_seed": 42,
+    "train_groups": [
+      "Chhattisgarh",
+      "Gujarat",
+      "Haryana",
+      "Karnataka",
+      "Madhya Pradesh",
+      "Maharashtra",
+      "Punjab",
+      "Telangana",
+      "West Bengal"
+    ],
+    "test_groups": [
+      "Andhra Pradesh",
+      "Rajasthan",
+      "Tamil Nadu",
+      "Uttar Pradesh"
+    ]
+  },
+  "metrics": {
+    "mae_kg_ha": 73.17307692307692,
+    "rmse_kg_ha": 93.35222343464727,
+    "r2_score": 0.9403933205246638,
+    "mape_percent": 7.393788532318426,
+    "mape_rows": 13
+  },
+  "test_predictions": [
+    {
+      "crop": "Groundnut",
+      "region": "Andhra Pradesh",
+      "actual_yield_kg_ha": 1490.0,
+      "predicted_yield_kg_ha": 1435.8125,
+      "residual_kg_ha": 54.1875
+    },
+    {
+      "crop": "Groundnut",
+      "region": "Tamil Nadu",
+      "actual_yield_kg_ha": 1630.0,
+      "predicted_yield_kg_ha": 1575.5625,
+      "residual_kg_ha": 54.4375
+    },
+    {
+      "crop": "Groundnut",
+      "region": "Rajasthan",
+      "actual_yield_kg_ha": 1280.0,
+      "predicted_yield_kg_ha": 1239.0625,
+      "residual_kg_ha": 40.9375
+    },
+    {
+      "crop": "Mustard",
+      "region": "Rajasthan",
+      "actual_yield_kg_ha": 1620.0,
+      "predicted_yield_kg_ha": 1573.125,
+      "residual_kg_ha": 46.875
+    },
+    {
+      "crop": "Mustard",
+      "region": "Uttar Pradesh",
+      "actual_yield_kg_ha": 1760.0,
+      "predicted_yield_kg_ha": 1713.625,
+      "residual_kg_ha": 46.375
+    },
+    {
+      "crop": "Soybean",
+      "region": "Rajasthan",
+      "actual_yield_kg_ha": 1570.0,
+      "predicted_yield_kg_ha": 1524.5625,
+      "residual_kg_ha": 45.4375
+    },
+    {
+      "crop": "Sunflower",
+      "region": "Andhra Pradesh",
+      "actual_yield_kg_ha": 1520.0,
+      "predicted_yield_kg_ha": 1446.125,
+      "residual_kg_ha": 73.875
+    },
+    {
+      "crop": "Sunflower",
+      "region": "Tamil Nadu",
+      "actual_yield_kg_ha": 1570.0,
+      "predicted_yield_kg_ha": 1505.25,
+      "residual_kg_ha": 64.75
+    },
+    {
+      "crop": "Sesame",
+      "region": "Uttar Pradesh",
+      "actual_yield_kg_ha": 760.0,
+      "predicted_yield_kg_ha": 839.1875,
+      "residual_kg_ha": -79.1875
+    },
+    {
+      "crop": "Sesame",
+      "region": "Rajasthan",
+      "actual_yield_kg_ha": 630.0,
+      "predicted_yield_kg_ha": 817.5,
+      "residual_kg_ha": -187.5
+    },
+    {
+      "crop": "Sesame",
+      "region": "Andhra Pradesh",
+      "actual_yield_kg_ha": 840.0,
+      "predicted_yield_kg_ha": 1057.4375,
+      "residual_kg_ha": -217.4375
+    },
+    {
+      "crop": "Rapeseed",
+      "region": "Rajasthan",
+      "actual_yield_kg_ha": 1540.0,
+      "predicted_yield_kg_ha": 1511.625,
+      "residual_kg_ha": 28.375
+    },
+    {
+      "crop": "Rapeseed",
+      "region": "Uttar Pradesh",
+      "actual_yield_kg_ha": 1890.0,
+      "predicted_yield_kg_ha": 1878.125,
+      "residual_kg_ha": 11.875
+    }
+  ],
+  "crop_metrics": [
+    {
+      "crop": "Groundnut",
+      "test_rows": 3,
+      "mae_kg_ha": 49.854166666666664
+    },
+    {
+      "crop": "Mustard",
+      "test_rows": 2,
+      "mae_kg_ha": 46.625
+    },
+    {
+      "crop": "Rapeseed",
+      "test_rows": 2,
+      "mae_kg_ha": 20.125
+    },
+    {
+      "crop": "Sesame",
+      "test_rows": 3,
+      "mae_kg_ha": 161.375
+    },
+    {
+      "crop": "Sunflower",
+      "test_rows": 2,
+      "mae_kg_ha": 69.3125
+    }
+  ],
+  "evaluated_at": "2026-10-22T16:47:06.380709+00:00",
+  "limitations": "Synthetic development data. Metrics validate software execution only; they do not represent real-world agricultural accuracy."
+}

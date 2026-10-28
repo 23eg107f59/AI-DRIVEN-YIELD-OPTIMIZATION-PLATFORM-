@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: oilseed-ai
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt && python -m backend.ml.train_model
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 120 "app:create_app()"
+    disk:
+      name: oilseed-ai-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: OILSEED_DATABASE_PATH
+        value: /var/data/oilseed_ai.db
+      - key: OILSEED_MODEL_PATH
+        value: models/yield_pipeline.joblib
+      - key: OILSEED_AUTO_SYNC
+        value: "true"
+      - key: OILSEED_SYNC_ON_STARTUP
+        value: "true"
+      - key: OILSEED_SYNC_INTERVAL_HOURS
+        value: "24"
+      - key: OILSEED_AUTH_REQUIRED
+        value: "true"
+      - key: OILSEED_AUTH_USERNAME
+        sync: false
+      - key: OILSEED_AUTH_PASSWORD
+        sync: false
